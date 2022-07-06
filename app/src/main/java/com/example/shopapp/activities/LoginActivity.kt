@@ -138,6 +138,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         Log.i("First Name: ", user.firstName)
         Log.i("Last Name: ", user.lastName)
         Log.i("Email: ", user.email)
+
         // START
         if (user.profileCompleted == 0) {
             // If the user profile is incomplete then launch the UserProfileActivity.
@@ -149,9 +150,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
         finish()
         // END
-
-        // Redirect the user to Main Screen after log in.
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-        finish()
+//
+//        // Redirect the user to Main Screen after log in.
+//        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+//        finish()
     }
 }
