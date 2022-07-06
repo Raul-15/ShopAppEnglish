@@ -12,6 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.shopapp.R
+import com.example.shopapp.firestore.FirestoreClass
+import com.example.shopapp.models.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -130,15 +132,24 @@ class RegisterActivity() : BaseActivity() {
 
                             // Firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
+                            // Instance of User data model class.
+                            val user = User(
+                                firebaseUser.uid,
+                                et_first_name.text.toString().trim { it <= ' ' },
+                                et_last_name.text.toString().trim { it <= ' ' },
+                                et_email.text.toString().trim { it <= ' ' }
+                            )
 
-                            Toast.makeText(
-                                this@RegisterActivity,
-                                "You are registered successfully. Yur user id is ${firebaseUser.uid}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            FirestoreClass().registerUser(this@RegisterActivity, user);
 
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
+//                            Toast.makeText(
+//                                this@RegisterActivity,
+//                                "You are registered successfully. Yur user id is ${firebaseUser.uid}",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+
+                            //  FirebaseAuth.getInstance().signOut()
+                            //  finish()
 
                             /**
                              * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
@@ -173,4 +184,26 @@ class RegisterActivity() : BaseActivity() {
     }
 
 
+    fun userRegistrationSuccess() {
+
+        // Hide the progress dialog
+        hideProgressDialog()
+
+        // TODO Step 5: Replace the success message to the Toast instead of Snackbar.
+        Toast.makeText(
+            this@RegisterActivity,
+            resources.getString(R.string.register_success),
+            Toast.LENGTH_SHORT
+        ).show()
+
+
+        /**
+         * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
+         * and send him to Intro Screen for Sign-In
+         */
+        FirebaseAuth.getInstance().signOut()
+        // Finish the Register Screen
+        finish()
+    }
+    // END
 }

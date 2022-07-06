@@ -5,11 +5,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
 import com.example.shopapp.R
+import com.example.shopapp.firestore.FirestoreClass
+import com.example.shopapp.models.User
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -116,12 +119,39 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     hideProgressDialog()
 
                     if (task.isSuccessful) {
-
+                        FirestoreClass().getUserDetails(this@LoginActivity)
                         showErrorSnackBar("You are logged in successfully.", false)
                     } else {
                         showErrorSnackBar(task.exception!!.message.toString(), true)
                     }
                 }
         }
+    }
+    //A function to notify user that logged in success and get the user details from the FireStore database after authentication.
+
+    fun userLoggedInSuccess(user: User) {
+
+        // Hide the progress dialog.
+        hideProgressDialog()
+
+        // Print the user details in the log as of now.
+        Log.i("First Name: ", user.firstName)
+        Log.i("Last Name: ", user.lastName)
+        Log.i("Email: ", user.email)
+        // START
+        if (user.profileCompleted == 0) {
+            // If the user profile is incomplete then launch the UserProfileActivity.
+            val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+            startActivity(intent)
+        } else {
+            // Redirect the user to Main Screen after log in.
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        }
+        finish()
+        // END
+
+        // Redirect the user to Main Screen after log in.
+        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        finish()
     }
 }
