@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import com.example.shopapp.activities.LoginActivity
 import com.example.shopapp.activities.RegisterActivity
+import com.example.shopapp.activities.SettingsActivity
 import com.example.shopapp.activities.UserProfileActivity
 import com.example.shopapp.models.User
 import com.example.shopapp.utils.Constants
@@ -91,6 +92,12 @@ class FirestoreClass {
                         // Call a function of base activity for transferring the result to it.
                         activity.userLoggedInSuccess(user)
                     }
+                    is SettingsActivity ->{
+                        // TODO Step 7: Call the function of base class.
+                        // Call a function of base activity for transferring the result to it.
+                        activity.userDetailsSuccess(user)
+                        // END
+                    }
                 }
                 // END
             }
@@ -98,6 +105,9 @@ class FirestoreClass {
                 // Hide the progress dialog if there is any error. And print the error in log.
                 when (activity) {
                     is LoginActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is SettingsActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
