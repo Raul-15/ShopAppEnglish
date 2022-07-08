@@ -10,6 +10,16 @@ video 38
  - (SOLUCION: ERA LA IMAGEN DEL FONDO DEL IMAGEVIW )LA IMAGEN DEL PERFIL NO PUEDE AGREGARSE, YA SE VIO EL LAYOUT Y EL CODIGO DE USERPROFILEACTIVITY ESTA CORRECTO
     *PONGO UNA IMAGEN Y NO APARECE PREVISUALIZADA.
     *NI CON GLIDE SE ACTIVA
+ - (SOLUCION: ERA CAMBIAR LAS REGLAS)LA IMAGEN NO SBIA A FIREBASE
+    - NUEVA REGLA :
+        rules_version = '2';
+        service firebase.storage {
+          match /b/{bucket}/o {
+            match /{allPaths=**} {
+             allow read, write: if request.auth != null;
+            }
+          }
+        }
 
 
 
