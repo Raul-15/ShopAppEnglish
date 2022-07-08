@@ -1,5 +1,19 @@
-video 19
+- Se crear parceable en Modelo: User
+- UserProfile:
+    * Deshabilita el editado de algunos campos al momento de editar perfil
 
-00:00
+video 38
+
+03:22
 * ERRORES
- - el boton/icono de back en registro de usuario no aparece
+ - el boton/icono de back en registro de usuario no aparece(ARREGLADOX EL FONDO DE PANTALLA)
+ - (SOLUCION: ERA LA IMAGEN DEL FONDO DEL IMAGEVIW )LA IMAGEN DEL PERFIL NO PUEDE AGREGARSE, YA SE VIO EL LAYOUT Y EL CODIGO DE USERPROFILEACTIVITY ESTA CORRECTO
+    *PONGO UNA IMAGEN Y NO APARECE PREVISUALIZADA.
+    *NI CON GLIDE SE ACTIVA
+
+
+
+ PLUGIN NUEVO
+ android parcelable code generator EN SETTINGS/PLUGIN
+ colocar android extensions en gradle
+ VIDEO 38 minuto 3
