@@ -112,25 +112,33 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
                 R.id.btn_submit -> {
+
                     if (validateUserProfileDetails()) {
+
+                        // Show the progress dialog.
                         showProgressDialog(resources.getString(R.string.please_wait))
-                        if (mSelectedImageFileUri != null)
+
+                        if (mSelectedImageFileUri != null) {
+
                             FirestoreClass().uploadImageToCloudStorage(
-                                this,
-                                mSelectedImageFileUri
+                                this@UserProfileActivity,
+                                mSelectedImageFileUri,
+                                Constants.USER_PROFILE_IMAGE
                             )
-                        else {
+                        } else {
+
                             updateUserProfileDetails()
                         }
                     }
-
-
                 }
+
 
             }
 
         }
+
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
