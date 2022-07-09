@@ -20,6 +20,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <Button
+                android:id="@+id/btn_add_to_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+
+                android:paddingTop="@dimen/btn_padding"
+                android:paddingBottom="@dimen/btn_padding"
+                android:text="@string/btn_lbl_add_to_cart"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/btn_textSize"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/btn_go_to_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingTop="@dimen/btn_padding"
+                android:paddingBottom="@dimen/btn_padding"
+                android:text="@string/btn_lbl_go_to_cart"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/btn_textSize"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_add_to_cart"
+                tools:visibility="visible" />
+
             <ImageView
                 android:id="@+id/iv_product_detail_image"
                 android:layout_width="match_parent"
@@ -30,35 +77,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/ll_product_details_title_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/product_details_title_price_marginTop"
-                android:background="@color/dashboard_item_details_bg"
-                android:orientation="vertical"
-                android:padding="@dimen/product_details_title_price_padding"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_product_detail_image">
-
-                <TextView
-                    android:id="@+id/tv_product_details_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/item_value_text_color"
-                    android:textSize="@dimen/product_details_title_textSize"
-                    tools:text="Product Title" />
-
-                <TextView
-                    android:id="@+id/tv_product_details_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/item_value_text_color"
-                    android:textSize="@dimen/product_details_price_textSize"
-                    tools:text="$100" />
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_product_details_quantity"
@@ -93,6 +111,35 @@
                     android:textSize="@dimen/product_details_stock_quantity_textSize"
                     android:textStyle="bold"
                     tools:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_product_details_title_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/product_details_title_price_marginTop"
+                android:background="@color/dashboard_item_details_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/product_details_title_price_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_product_detail_image">
+
+                <TextView
+                    android:id="@+id/tv_product_details_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/item_value_text_color"
+                    android:textSize="@dimen/product_details_title_textSize"
+                    tools:text="Product Title" />
+
+                <TextView
+                    android:id="@+id/tv_product_details_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/item_value_text_color"
+                    android:textSize="@dimen/product_details_price_textSize"
+                    tools:text="$100" />
             </LinearLayout>
 
             <TextView
@@ -144,4 +191,5 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

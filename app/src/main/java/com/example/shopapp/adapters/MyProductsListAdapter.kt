@@ -52,6 +52,10 @@ open class MyProductsListAdapter(
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
                 intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
+
+                //Informacion que saldra como autor del producto
+                intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.user_id)
+
                 context.startActivity(intent)
             }
 

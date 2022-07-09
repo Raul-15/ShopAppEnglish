@@ -10,6 +10,7 @@ import com.bumptech.glide.load.ImageHeaderParser
 import com.example.shopapp.activities.*
 import com.example.shopapp.fragments.DashboardFragment
 import com.example.shopapp.fragments.ProductsFragment
+import com.example.shopapp.models.Cart
 import com.example.shopapp.models.User
 import com.example.shopapp.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -363,6 +364,59 @@ class FirestoreClass {
                 activity.hideProgressDialog()
 
                 Log.e(activity.javaClass.simpleName, "Error while getting the product details.", e)
+            }
+    }
+    fun addCartItems(activity: ProductDetailsActivity, addToCart: Cart) {
+
+        mFireStore.collection(Constants.CART_ITEMS)
+            .document()
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .set(addToCart, SetOptions.merge())
+            .addOnSuccessListener {
+
+                // Here call a function of base activity for transferring the result to it.
+                activity.addToCartSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while creating the document for cart item.",
+                    e
+                )
+            }
+    }
+    fun checkIfItemExistInCart(activity: ProductDetailsActivity, productId: String) {
+
+        mFireStore.collection(Constants.CART_ITEMS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .whereEqualTo(Constants.PRODUCT_ID, productId)
+            .get()
+            .addOnSuccessListener { document ->
+
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+
+                // TODO Step 8: Notify the success result to the base class.
+                // START
+                // If the document size is greater than 1 it means the product is already added to the cart.
+                if (document.documents.size > 0) {
+                    activity.productExistsInCart()
+                } else {
+                    activity.hideProgressDialog()
+                }
+                // END
+            }
+            .addOnFailureListener { e ->
+                // Hide the progress dialog if there is an error.
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while checking the existing cart list.",
+                    e
+                )
             }
     }
 

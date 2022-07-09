@@ -3,17 +3,22 @@ package com.example.shopapp.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import com.example.shopapp.R
 import com.example.shopapp.firestore.FirestoreClass
+import com.example.shopapp.models.Cart
 import com.example.shopapp.utils.Constants
 import com.example.shopapp.utils.GlideLoader
 import com.myshoppal.models.Product
 import kotlinx.android.synthetic.main.activity_product_details.*
 
-class ProductDetailsActivity : BaseActivity() {
+class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     // A global variable for product id.
     private var mProductId: String = ""
+    private lateinit var mProductDetails: Product
+
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -30,14 +35,31 @@ class ProductDetailsActivity : BaseActivity() {
             Log.i("Product Id", mProductId)
         }
 
+        // TODO: aqui se programa la parte para que se vea el propietario del producto
+        var productOwnerId: String = ""
+        if (intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
+            productOwnerId =
+                intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
+
+
+            if (FirestoreClass().getCurrentUserID() == productOwnerId) {
+                btn_add_to_cart.visibility = View.GONE
+                btn_go_to_cart.visibility = View.GONE
+
+            } else {
+                btn_add_to_cart.visibility = View.VISIBLE
+            }
+        }
+
+
         setupActionBar()
 
         getProductDetails()
+        btn_add_to_cart.setOnClickListener(this)
+
+
     }
 
-    /**
-     * A function for actionBar Setup.
-     */
     private fun setupActionBar() {
 
         setSupportActionBar(toolbar_product_details_activity)
@@ -51,6 +73,7 @@ class ProductDetailsActivity : BaseActivity() {
         toolbar_product_details_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
+
     /**
      * A function to call the firestore class function that will get the product details from cloud firestore based on the product id.
      */
@@ -63,12 +86,24 @@ class ProductDetailsActivity : BaseActivity() {
         FirestoreClass().getProductDetails(this@ProductDetailsActivity, mProductId)
     }
 
+    fun productExistsInCart() {
+
+        // Hide the progress dialog.
+        hideProgressDialog()
+
+        // Hide the AddToCart button if the item is already in the cart.
+        btn_add_to_cart.visibility = View.GONE
+        // Show the GoToCart button if the item is already in the cart. User can update the quantity from the cart list screen if he wants.
+        btn_go_to_cart.visibility = View.VISIBLE
+    }
+
     /**
      * A function to notify the success result of the product details based on the product id.
      *
      * @param product A model class with product details.
      */
     fun productDetailsSuccess(product: Product) {
+        mProductDetails = product
 
         // Hide Progress dialog.
         hideProgressDialog()
@@ -83,5 +118,58 @@ class ProductDetailsActivity : BaseActivity() {
         tv_product_details_price.text = "$${product.price}"
         tv_product_details_description.text = product.description
         tv_product_details_stock_quantity.text = product.stock_quantity
+        if (FirestoreClass().getCurrentUserID() == product.user_id) {
+            // Hide Progress dialog.
+            hideProgressDialog()
+        } else {
+            FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+        }
+    }
+
+    override fun onClick(v: View?) {
+
+        if (v != null) {
+            when (v.id) {
+
+                R.id.btn_add_to_cart -> {
+                    addToCart()
+                }
+            }
+        }
+    }
+
+    private fun addToCart() {
+
+        val addToCart = Cart(
+            FirestoreClass().getCurrentUserID(),
+            mProductId,
+            mProductDetails.title,
+            mProductDetails.price,
+            mProductDetails.image,
+            Constants.DEFAULT_CART_QUANTITY
+        )
+
+        // TODO Step 5: Call the function of Firestore class to add the cart item to the cloud firestore along with the required params.
+        // START
+        // Show the progress dialog
+        showProgressDialog(resources.getString(R.string.please_wait))
+
+        FirestoreClass().addCartItems(this@ProductDetailsActivity, addToCart)
+        // END
+    }
+
+    fun addToCartSuccess() {
+        // Hide the progress dialog.
+        hideProgressDialog()
+
+        Toast.makeText(
+            this@ProductDetailsActivity,
+            resources.getString(R.string.success_message_item_added_to_cart),
+            Toast.LENGTH_SHORT
+        ).show()
+
+        btn_add_to_cart.visibility = View.GONE
+        btn_go_to_cart.visibility = View.VISIBLE
+
     }
 }
