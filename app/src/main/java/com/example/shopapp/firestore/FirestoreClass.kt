@@ -280,6 +280,7 @@ class FirestoreClass {
                 Log.e("Get Product List", "Error while getting product list.", e)
             }
     }
+
     fun deleteProduct(fragment: ProductsFragment, productId: String) {
 
         mFireStore.collection(Constants.PRODUCTS)
@@ -305,6 +306,7 @@ class FirestoreClass {
                 )
             }
     }
+
     fun getDashboardItemsList(fragment: DashboardFragment) {
         // The collection name for PRODUCTS
         mFireStore.collection(Constants.PRODUCTS)
@@ -332,6 +334,35 @@ class FirestoreClass {
                 // Hide the progress dialog if there is any error which getting the dashboard items list.
                 fragment.hideProgressDialog()
                 Log.e(fragment.javaClass.simpleName, "Error while getting dashboard items list.", e)
+            }
+    }
+
+    fun getProductDetails(activity: ProductDetailsActivity, productId: String) {
+
+        // The collection name for PRODUCTS
+        mFireStore.collection(Constants.PRODUCTS)
+            .document(productId)
+            .get() // Will get the document snapshots.
+            .addOnSuccessListener { document ->
+
+                // Here we get the product details in the form of document.
+                Log.e(activity.javaClass.simpleName, document.toString())
+
+                // Convert the snapshot to the object of Product data model class.
+                val product = document.toObject(Product::class.java)!!
+                if (product != null) {
+                    activity.productDetailsSuccess(product)
+
+
+                }
+                activity.productDetailsSuccess(product)
+            }
+            .addOnFailureListener { e ->
+
+                // Hide the progress dialog if there is an error.
+                activity.hideProgressDialog()
+
+                Log.e(activity.javaClass.simpleName, "Error while getting the product details.", e)
             }
     }
 

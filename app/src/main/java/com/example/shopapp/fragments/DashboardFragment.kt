@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopapp.R
 import com.example.shopapp.activities.SettingsActivity
+import com.example.shopapp.adapters.DashboardItemsListAdapter
 import com.example.shopapp.firestore.FirestoreClass
 import com.myshoppal.models.Product
-import com.myshoppal.ui.adapters.DashboardItemsListAdapter
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 
