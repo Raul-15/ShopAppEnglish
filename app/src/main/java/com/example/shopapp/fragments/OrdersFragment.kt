@@ -11,17 +11,14 @@ import com.example.shopapp.R
 
 class OrdersFragment : Fragment() {
 
-   // private lateinit var notificationsViewModel: NotificationsViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //notificationsViewModel = ViewModelProvider(this).get(NotificationsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_orders, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
-        textView.text = "This is orders Fragment"
+        textView.text = "This is Orders Fragment"
         return root
     }
 }
