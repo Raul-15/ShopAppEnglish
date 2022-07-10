@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_splash_background"
+    android:background="@color/black"
     tools:context=".activities.SplashActivity">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
-        android:text="My Store"
+        android:text="Veterinaria Rondon"
         android:textColor="@color/white"
         android:textSize="@dimen/splash_title_text_size"
         app:layout_constraintBottom_toBottomOf="parent"

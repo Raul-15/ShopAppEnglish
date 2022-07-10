@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import com.example.shopapp.R
 import com.example.shopapp.firestore.FirestoreClass
 import com.example.shopapp.models.User
@@ -90,7 +91,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 false
             }
             else -> {
-                showErrorSnackBar("Your details are valid.", false)
+                //   showErrorSnackBar("Your details are valid.", false)
+
                 true
             }
         }
@@ -121,7 +123,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
                     if (task.isSuccessful) {
                         FirestoreClass().getUserDetails(this@LoginActivity)
-                        showErrorSnackBar("You are logged in successfully.", false)
+                        // showErrorSnackBar("You are logged in successfully.", false)
+                        Toast.makeText(this, "Te has logueado exitosamente!", Toast.LENGTH_SHORT)
+                            .show()
                     } else {
                         showErrorSnackBar(task.exception!!.message.toString(), true)
                     }

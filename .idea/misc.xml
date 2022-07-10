@@ -7,22 +7,27 @@
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/drawable_gender_tab_selector.xml" value="0.177" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_black_color_back_24dp.xml" value="0.177" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1185" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_products.xml" value="0.133" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_add.xml" value="0.1185" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_add_product.xml" value="0.1185" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_cart.xml" value="0.144" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_chevron_right.xml" value="0.1185" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_dashboard.xml" value="0.1185" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_delete.xml" value="0.133" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_remove.xml" value="0.1185" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_vector_settings.xml" value="0.1185" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/ic_white_color_back_24dp.xml" value="0.133" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/item_dashboard_background.xml" value="0.1185" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/drawable/user_image_background.xml" value="0.177" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_add_product.xml" value="0.225" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_base.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_cart_list.xml" value="0.225" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_dashboard.xml" value="0.225" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.33" />
-        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_product_details.xml" value="0.225" />
-        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_register.xml" value="0.18" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_settings.xml" value="0.22" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_splash.xml" value="0.15" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/layout/activity_splash2.xml" value="0.1" />
@@ -40,6 +45,8 @@
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/menu/add_product_menu.xml" value="0.225" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.11145833333333334" />
         <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/menu/dashboard_menu.xml" value="0.21" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/menu/ic_menu_item.xml" value="0.225" />
+        <entry key="..\:/Users/Raul/OneDrive/Documentos/ShopApp/app/src/main/res/menu/nav_item.xml" value="0.225" />
       </map>
     </option>
   </component>

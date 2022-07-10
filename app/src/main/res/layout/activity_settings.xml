@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/content_description"
                 android:scaleType="fitXY"
-                android:src="@drawable/auth_screens_background" />
+                 />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_settings_activity"
