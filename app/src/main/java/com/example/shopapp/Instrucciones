@@ -2,10 +2,11 @@
 - UserProfile:
     * Deshabilita el editado de algunos campos al momento de editar perfil
 
-video 65
-7:48**
+VIDEO87
+TERMINADO
+QUEDA PENDIENTE EL ERROR DE LA TUERCA
 
-03:22
+
 * ERRORES
  - el boton/icono de back en registro de usuario no aparece(ARREGLADOX EL FONDO DE PANTALLA)
  - (SOLUCION: ERA LA IMAGEN DEL FONDO DEL IMAGEVIW )LA IMAGEN DEL PERFIL NO PUEDE AGREGARSE, YA SE VIO EL LAYOUT Y EL CODIGO DE USERPROFILEACTIVITY ESTA CORRECTO

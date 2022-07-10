@@ -9,9 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopapp.R
+import com.example.shopapp.activities.CartListActivity
+import com.example.shopapp.activities.LoginActivity
 import com.example.shopapp.activities.SettingsActivity
 import com.example.shopapp.adapters.DashboardItemsListAdapter
 import com.example.shopapp.firestore.FirestoreClass
+import com.google.firebase.auth.FirebaseAuth
 import com.myshoppal.models.Product
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
@@ -48,6 +51,18 @@ class DashboardFragment : BaseFragment() {
             R.id.action_settings -> {
 
                 startActivity(Intent(activity, SettingsActivity::class.java))
+                return true
+            }
+            R.id.action_cart -> {
+
+                startActivity(Intent(activity, CartListActivity::class.java))
+                return true
+            }
+            R.id.log_out_atlternative -> {
+
+                FirebaseAuth.getInstance().signOut()
+
+                startActivity(Intent(activity, LoginActivity::class.java))
                 return true
             }
         }

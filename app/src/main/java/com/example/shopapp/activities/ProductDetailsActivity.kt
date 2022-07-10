@@ -1,10 +1,12 @@
 package com.example.shopapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.shopapp.R
 import com.example.shopapp.firestore.FirestoreClass
 import com.example.shopapp.models.Cart
@@ -41,21 +43,26 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             productOwnerId =
                 intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
 
+        }
+        setupActionBar()
 
-            if (FirestoreClass().getCurrentUserID() == productOwnerId) {
-                btn_add_to_cart.visibility = View.GONE
-                btn_go_to_cart.visibility = View.GONE
+        if (FirestoreClass().getCurrentUserID() == productOwnerId) {
+            btn_add_to_cart.visibility = View.GONE
+            btn_go_to_cart.visibility = View.GONE
 
-            } else {
-                btn_add_to_cart.visibility = View.VISIBLE
-            }
+        } else {
+            btn_add_to_cart.visibility = View.VISIBLE
         }
 
 
-        setupActionBar()
+
+
+
+
+        btn_add_to_cart.setOnClickListener(this)
+        btn_go_to_cart.setOnClickListener(this)
 
         getProductDetails()
-        btn_add_to_cart.setOnClickListener(this)
 
 
     }
@@ -105,8 +112,8 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     fun productDetailsSuccess(product: Product) {
         mProductDetails = product
 
-        // Hide Progress dialog.
-        hideProgressDialog()
+//        // Hide Progress dialog.
+//        hideProgressDialog()
 
         // Populate the product details in the UI.
         GlideLoader(this@ProductDetailsActivity).loadProductPicture(
@@ -118,21 +125,55 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         tv_product_details_price.text = "$${product.price}"
         tv_product_details_description.text = product.description
         tv_product_details_stock_quantity.text = product.stock_quantity
-        if (FirestoreClass().getCurrentUserID() == product.user_id) {
+
+        if (product.stock_quantity.toInt() == 0) {
+
             // Hide Progress dialog.
             hideProgressDialog()
+
+            // Hide the AddToCart button if the item is already in the cart.
+            btn_add_to_cart.visibility = View.GONE
+
+
+
+            tv_product_details_stock_quantity.text =
+                resources.getString(R.string.lbl_out_of_stock)
+
+            tv_product_details_stock_quantity.setTextColor(
+                ContextCompat.getColor(
+                    this@ProductDetailsActivity,
+                    R.color.colorSnackBarError
+                )
+            )
         } else {
-            FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+
+            // There is no need to check the cart list if the product owner himself is seeing the product details.
+            if (FirestoreClass().getCurrentUserID() == product.user_id) {
+                // Hide Progress dialog.
+                hideProgressDialog()
+            } else {
+                FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+            }
         }
+//
+//        if (FirestoreClass().getCurrentUserID() == product.user_id) {
+//            // Hide Progress dialog.
+//            hideProgressDialog()
+//        } else {
+//            FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+//        }
     }
 
     override fun onClick(v: View?) {
-
         if (v != null) {
             when (v.id) {
 
                 R.id.btn_add_to_cart -> {
                     addToCart()
+                }
+
+                R.id.btn_go_to_cart -> {
+                    startActivity(Intent(this@ProductDetailsActivity, CartListActivity::class.java))
                 }
             }
         }
